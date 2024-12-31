@@ -27,7 +27,7 @@
     :parameters (?x ?y ?z) 
     
     :precondition(and
-    (PERSON ?x) (VEHICLE ?y) (STATION ?z)
+    (PERSON ?x) (VEHICLE ?y) (or (AIRPORT ?z) (STATION ?z))
     (is-person-at ?x ?z)
     (is-vehicle-at ?y ?z)
     (not (is-person-in-vehicle ?x ?y))
@@ -51,7 +51,7 @@
     :parameters (?x ?y ?z) 
     
     :precondition(and
-    (PERSON ?x) (VEHICLE ?y) (STATION ?z)
+    (PERSON ?x) (VEHICLE ?y) (or (AIRPORT ?z) (STATION ?z))
     (is-person-in-vehicle ?x ?y)
     (is-vehicle-at ?y ?z)
     )
@@ -100,6 +100,7 @@
     :precondition (and
     (or (AIRPORT ?x) (STATION ?x)) 
     (or (AIRPORT ?y) (STATION ?y)) 
+    (not(and(AIRPORT ?x) (AIRPORT ?y)))
     (SUBWAY ?z) 
     (connected ?x ?y)
     (is-vehicle-at ?z ?x)
